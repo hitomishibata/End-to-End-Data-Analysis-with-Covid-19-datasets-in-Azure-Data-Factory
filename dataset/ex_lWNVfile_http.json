@@ -22,14 +22,15 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "transmission-WNV-2023-season",
+			"sheetName": "OverviewTable",
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
 					"value": "@dataset().sourceRelativeURL",
 					"type": "Expression"
 				}
-			}
+			},
+			"firstRowAsHeader": true
 		},
 		"schema": []
 	}
