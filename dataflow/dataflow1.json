@@ -1,0 +1,70 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_cases_and_deaths",
+						"type": "DatasetReference"
+					},
+					"name": "sourceCasesandDeaths"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "OnlyEurope"
+				},
+				{
+					"name": "pivotCaseandDeaths"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          country as string,",
+				"          country_code as string,",
+				"          continent as string,",
+				"          population as string,",
+				"          indicator as string,",
+				"          weekly_count as string,",
+				"          year_week as string,",
+				"          rate_14_day as string,",
+				"          cumulative_count as string,",
+				"          source as string,",
+				"          note as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceCasesandDeaths",
+				"OnlyEurope select(mapColumn(",
+				"          country,",
+				"          country_code,",
+				"          population,",
+				"          indicator,",
+				"          weekly_count,",
+				"          year_week,",
+				"          cumulative_count,",
+				"          source",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"sourceCasesandDeaths filter(continent == 'Europe') ~> OnlyEurope",
+				"select1 pivot(groupBy(country,",
+				"          country_code,",
+				"          population,",
+				"          year_week,",
+				"          cumulative_count,",
+				"          source),",
+				"     pivotBy(indicator, ['cases', 'deaths']),",
+				"     {} = weekly_count,",
+				"     columnNaming: '$N_$V',",
+				"     lateral: true) ~> pivotCaseandDeaths"
+			]
+		}
+	}
+}
