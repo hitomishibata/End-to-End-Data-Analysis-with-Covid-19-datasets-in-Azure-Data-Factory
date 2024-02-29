@@ -1,0 +1,104 @@
+{
+	"name": "dataflowCasesandDeaths",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_cases_and_deaths",
+						"type": "DatasetReference"
+					},
+					"name": "sourceCasesandDeaths"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_cases_and_deaths_processed_adls",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "select1"
+				},
+				{
+					"name": "OnlyEurope"
+				},
+				{
+					"name": "pivotCaseandDeaths"
+				},
+				{
+					"name": "select2"
+				},
+				{
+					"name": "sortDate"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          country as string,",
+				"          country_code as string,",
+				"          continent as string,",
+				"          population as integer,",
+				"          indicator as string,",
+				"          weekly_count as integer,",
+				"          year_week as string,",
+				"          rate_14_day as float,",
+				"          cumulative_count as integer,",
+				"          source as string,",
+				"          note as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> sourceCasesandDeaths",
+				"OnlyEurope select(mapColumn(",
+				"          country,",
+				"          country_code,",
+				"          population,",
+				"          indicator,",
+				"          weekly_count,",
+				"          year_week,",
+				"          cumulative_count,",
+				"          source",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"sourceCasesandDeaths filter(continent == 'Europe') ~> OnlyEurope",
+				"select1 pivot(groupBy(country,",
+				"          country_code,",
+				"          population,",
+				"          year_week,",
+				"          cumulative_count,",
+				"          source),",
+				"     pivotBy(indicator, ['cases', 'deaths']),",
+				"     count = sum(weekly_count),",
+				"     columnNaming: '$N_$V',",
+				"     lateral: true) ~> pivotCaseandDeaths",
+				"pivotCaseandDeaths select(mapColumn(",
+				"          country,",
+				"          country_code,",
+				"          population,",
+				"          year_week,",
+				"          cumulative_count,",
+				"          count_cases,",
+				"          count_deaths,",
+				"          source",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 sort(desc(year_week, true)) ~> sortDate",
+				"sortDate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}
