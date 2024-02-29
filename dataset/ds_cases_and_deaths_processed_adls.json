@@ -1,0 +1,22 @@
+{
+	"name": "ds_cases_and_deaths_processed_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_raw_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "covidprocessed"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
