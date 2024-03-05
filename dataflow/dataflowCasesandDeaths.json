@@ -47,7 +47,7 @@
 				"          indicator as string,",
 				"          weekly_count as integer,",
 				"          year_week as string,",
-				"          rate_14_day as float,",
+				"          rate_14_day as string,",
 				"          cumulative_count as integer,",
 				"          source as string,",
 				"          note as string",

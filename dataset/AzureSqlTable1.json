@@ -45,7 +45,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "covid_reporting",
+			"schema": "covid_report",
 			"table": "cases_and_deaths"
 		}
 	}
