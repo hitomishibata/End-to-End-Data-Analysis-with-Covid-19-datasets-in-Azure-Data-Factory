@@ -6,6 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
+
 		"type": "AzureSqlTable",
 		"schema": [
 			{
@@ -13,11 +14,7 @@
 				"type": "varchar"
 			},
 			{
-				"name": "country_code_2_digit",
-				"type": "varchar"
-			},
-			{
-				"name": "country_code_3_digit",
+				"name": "country_code",
 				"type": "varchar"
 			},
 			{
@@ -26,18 +23,23 @@
 				"precision": 19
 			},
 			{
-				"name": "cases_count",
+				"name": "year_week",
+				"type": "varchar"
+			},
+			{
+				"name": "cumulative_count",
+				"type": "bigint",
+				"precision": 19
+			}
+			{
+				"name": "count_cases",
 				"type": "bigint",
 				"precision": 19
 			},
 			{
-				"name": "deaths_count",
+				"name": "count_deaths",
 				"type": "bigint",
 				"precision": 19
-			},
-			{
-				"name": "reported_date",
-				"type": "date"
 			},
 			{
 				"name": "source",
