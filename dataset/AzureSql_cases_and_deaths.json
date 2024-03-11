@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "AzureSql_cases_and_deaths",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlCovidDatabase",
