@@ -5,7 +5,14 @@
 			{
 				"name": "dataflowCasesandDeaths",
 				"type": "ExecuteDataFlow",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Validate Cases and Deaths File",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.00:10:00",
 					"retry": 0,
@@ -27,7 +34,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy Processed file into SQL",
 				"type": "Copy",
 				"dependsOn": [
 					{
@@ -84,10 +91,24 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "AzureSql_cases_and_deaths",
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Validate Cases and Deaths File",
+				"type": "Validation",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_cases_and_deaths",
+						"type": "DatasetReference"
+					},
+					"timeout": "0.00:10:00",
+					"sleep": 10
+				}
 			}
 		],
 		"annotations": []
