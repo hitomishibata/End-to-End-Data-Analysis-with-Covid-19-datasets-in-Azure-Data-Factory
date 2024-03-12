@@ -6,9 +6,6 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"sourceBaseURL": {
-				"type": "string"
-			},
 			"sourceRelativeURL": {
 				"type": "string"
 			}
