@@ -100,10 +100,6 @@
 									"referenceName": "ds_ecdc_raw_http",
 									"type": "DatasetReference",
 									"parameters": {
-										"sourceBaseURL": {
-											"value": "@item().sourceBaseURL",
-											"type": "Expression"
-										},
 										"sourceRelativeURL": {
 											"value": "@item().sourceRelativeURL",
 											"type": "Expression"
