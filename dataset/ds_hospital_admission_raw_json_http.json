@@ -1,0 +1,38 @@
+{
+	"name": "ds_hospital_admission_raw_json_http",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_ecdc_raw_http",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"sourceBaseURL": {
+					"value": "@dataset().sourceBaseURL",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"sourceBaseURL": {
+				"type": "string"
+			},
+			"sourceRelativeURL": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "raw"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().sourceRelativeURL",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}
