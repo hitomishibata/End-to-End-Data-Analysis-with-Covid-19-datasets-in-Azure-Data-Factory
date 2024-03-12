@@ -5,6 +5,9 @@
 			"referenceName": "ls_covid_raw_adls",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "config"
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {

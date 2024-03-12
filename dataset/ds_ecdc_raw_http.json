@@ -1,8 +1,8 @@
 {
-	"name": "ex_lWNVfile_http",
+	"name": "ds_ecdc_raw_http",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "ls_wnv_http",
+			"referenceName": "ls_ecdc_raw_http",
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"sourceBaseURL": {
@@ -19,10 +19,12 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "raw"
+		},
 		"annotations": [],
-		"type": "Excel",
+		"type": "DelimitedText",
 		"typeProperties": {
-			"sheetName": "OverviewTable",
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
@@ -30,7 +32,10 @@
 					"type": "Expression"
 				}
 			},
-			"firstRowAsHeader": true
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
 		},
 		"schema": []
 	}

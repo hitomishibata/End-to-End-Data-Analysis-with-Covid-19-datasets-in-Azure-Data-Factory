@@ -1,5 +1,5 @@
 {
-	"name": "ls_wnv_http",
+	"name": "ls_ecdc_raw_http",
 	"properties": {
 		"parameters": {
 			"sourceBaseURL": {

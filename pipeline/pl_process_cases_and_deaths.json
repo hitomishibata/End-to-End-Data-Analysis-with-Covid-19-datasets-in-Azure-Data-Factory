@@ -1,5 +1,5 @@
 {
-	"name": "pl_ingest_cases_and_deaths",
+	"name": "pl_process_cases_and_deaths",
 	"properties": {
 		"activities": [
 			{
@@ -111,6 +111,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "process"
+		},
 		"annotations": []
 	}
 }
