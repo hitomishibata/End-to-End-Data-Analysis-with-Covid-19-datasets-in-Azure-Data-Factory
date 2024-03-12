@@ -1,0 +1,30 @@
+{
+	"name": "ds_hospital_admission_raw_json_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_raw_adls",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"sinkFileName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "raw"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().sinkFileName",
+					"type": "Expression"
+				},
+				"fileSystem": "covidraw"
+			}
+		},
+		"schema": {}
+	}
+}

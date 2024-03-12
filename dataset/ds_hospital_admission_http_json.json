@@ -1,0 +1,35 @@
+{
+	"name": "ds_hospital_admission_http_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_raw_adls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "config"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "hospital_admission.json",
+				"fileSystem": "covidconfig"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sourceBaseURL": {
+					"type": "string"
+				},
+				"sourceRelativeURL": {
+					"type": "string"
+				},
+				"sinkFileName": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
