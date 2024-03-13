@@ -1,0 +1,22 @@
+{
+	"name": "ds_hospital_admission_raw_json_adls_copy1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_raw_adls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "raw"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "hospital_admission.json",
+				"fileSystem": "covidraw"
+			}
+		},
+		"schema": {}
+	}
+}
