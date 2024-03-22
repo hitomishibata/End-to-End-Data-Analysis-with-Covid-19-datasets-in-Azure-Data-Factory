@@ -5,16 +5,22 @@
 		"factoryName": {
 			"value": "adfudemycoursedevwesteurope"
 		},
+		"AzureDatabricksCovid_accessToken": {
+			"value": ""
+		},
 		"AzureSqlCovidDatabase_connectionString": {
 			"value": ""
 		},
 		"ls_covid_raw_adls_accountKey": {
 			"value": ""
 		},
+		"AzureDatabricksCovid_properties_typeProperties_existingClusterId": {
+			"value": "0112-110710-l6q2fhfr"
+		},
 		"ls_covid_raw_adls_properties_typeProperties_url": {
 			"value": "https://dludemyes.dfs.core.windows.net/"
 		},
-		"ls_wnv_http_properties_typeProperties_url": {
+		"ls_ecdc_raw_http_properties_typeProperties_url": {
 			"value": "@{linkedService().sourceBaseURL}"
 		}
 	}

@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adfudemycoursedevwesteurope"
 		},
+		"AzureDatabricksCovid_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksCovid'"
+		},
 		"AzureSqlCovidDatabase_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureSqlCovidDatabase'"
@@ -15,11 +19,15 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_covid_raw_adls'"
 		},
+		"AzureDatabricksCovid_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0112-110710-l6q2fhfr"
+		},
 		"ls_covid_raw_adls_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dludemyes.dfs.core.windows.net/"
 		},
-		"ls_wnv_http_properties_typeProperties_url": {
+		"ls_ecdc_raw_http_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "@{linkedService().sourceBaseURL}"
 		},
@@ -50,21 +58,47 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDatabricksCovid_accessToken": {
+						"value": "[parameters('AzureDatabricksCovid_accessToken')]"
+					},
 					"AzureSqlCovidDatabase_connectionString": {
 						"value": "[parameters('AzureSqlCovidDatabase_connectionString')]"
 					},
 					"ls_covid_raw_adls_accountKey": {
 						"value": "[parameters('ls_covid_raw_adls_accountKey')]"
 					},
+					"AzureDatabricksCovid_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricksCovid_properties_typeProperties_existingClusterId')]"
+					},
 					"ls_covid_raw_adls_properties_typeProperties_url": {
 						"value": "[parameters('ls_covid_raw_adls_properties_typeProperties_url')]"
 					},
-					"ls_wnv_http_properties_typeProperties_url": {
-						"value": "[parameters('ls_wnv_http_properties_typeProperties_url')]"
+					"ls_ecdc_raw_http_properties_typeProperties_url": {
+						"value": "[parameters('ls_ecdc_raw_http_properties_typeProperties_url')]"
 					}
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "adfudemycoursedevwesteurope_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adfudemycoursedevwesteurope_ArmTemplate_0')]"
+			]
 		}
 	]
 }
