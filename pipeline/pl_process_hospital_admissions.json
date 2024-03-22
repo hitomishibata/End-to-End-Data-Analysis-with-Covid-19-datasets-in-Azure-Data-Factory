@@ -1,0 +1,31 @@
+{
+	"name": "pl_process_hospital_admissions",
+	"properties": {
+		"activities": [
+			{
+				"name": "hospital_admissions",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.00:10:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/hitomi.shibata@sparck.pro/hitomi.shibata@sparck.pro/Covid/transform_hospital_admissions_file"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksCovid",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "process"
+		},
+		"annotations": []
+	}
+}
