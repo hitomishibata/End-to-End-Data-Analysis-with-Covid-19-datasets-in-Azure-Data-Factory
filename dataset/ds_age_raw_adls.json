@@ -1,0 +1,26 @@
+{
+	"name": "ds_age_raw_adls",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_raw_adls",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "raw"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "agecasesnational.csv",
+				"fileSystem": "covidraw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
