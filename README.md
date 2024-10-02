@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/6ab8b783-d94a-4849-a8dd-97e0e3070b85)
 # Introduction 
 In this data engineering project, I worked on building ETL pipelines with open large dataset.  
 The major part is from the assinment guideline of an Udemy's course but I changed some parts for extra challenge.  
