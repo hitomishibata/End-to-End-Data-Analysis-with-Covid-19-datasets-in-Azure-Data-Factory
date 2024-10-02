@@ -4,7 +4,7 @@ In this data engineering project, I worked on building ETL pipelines with open l
 The major part is from the assinment guideline of an Udemy's course but I changed some parts for extra challenge.  
 Course name: Azure Data Factory For Data Engineers - Project on Covid19
 The activities involved in the project are:
-1. Building data pipelines for data ingestiond and transformatioin
+1. Building data pipelines for data ingestion and transformatioin
 2. Visualization in PowerBI
 3. Pipeline CL/CD in Azure DevOps
  
